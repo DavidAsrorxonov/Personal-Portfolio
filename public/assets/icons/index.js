@@ -15,3 +15,7 @@ export { default as Git } from "./Git";
 export { default as GitHub } from "./GitHub";
 export { default as Docker } from "./Docker";
 export { default as Vite } from "./Vite";
+export { default as LinkedIn } from "./LinkedIn";
+export { default as Telegram } from "./Telegram";
+export { default as Gmail } from "./Gmail";
+export { default as Threads } from "./Threads";

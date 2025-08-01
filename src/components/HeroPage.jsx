@@ -7,7 +7,18 @@ import { projects } from "../lib/projects";
 import { sections } from "../lib/sections";
 import { option } from "../lib/githubOption";
 import { technicalSkills } from "../lib/technicalSkills";
-import { Medal, Menu, X } from "lucide-react";
+import {
+  Clock,
+  Github,
+  Globe,
+  Lock,
+  MapPinHouse,
+  Medal,
+  Menu,
+  X,
+} from "lucide-react";
+import { professionalTimeline } from "../lib/professionalTimeline";
+import { socialMediaLinks } from "../lib/socialMedia";
 
 const HeroPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -527,56 +538,35 @@ const HeroPage = () => {
 
             <div>
               <h3 className="text-2xl font-bold mb-6">Professional Timeline</h3>
-
-              <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-500 before:via-purple-500 before:to-pink-500">
-                {[
-                  {
-                    year: "2025 - Present",
-                    title: "Front End Developer",
-                    company: "Freelancer",
-                    description:
-                      "Working on myself and showcasing applications using React and Node.js.",
-                  },
-                  {
-                    year: "2022 - 2024",
-                    title: "Coder focused on Frontend Development",
-                    company: "Freelancer",
-                    description:
-                      "Learning and applying what I have been taught in the past.",
-                  },
-                  {
-                    year: "2020 - 2022",
-                    title: "Junior Developer having no experience",
-                    company: "Not working",
-                    description:
-                      "Spent time learning and understanding the basics of programming.",
-                  },
-                  {
-                    year: "2018 - 2020",
-                    title: "Honor Graduate with Golden Medal",
-                    company: "High School",
-                    description:
-                      "Graduated with the highest honors, receiving the prestigious Golden Medal for outstanding academic performance.",
-                  },
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="relative flex items-start group md:flex-col md:items-center"
-                  >
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-gray-900 text-blue-500 shadow-md shadow-blue-900/20 md:mb-3 md:mt-2">
-                      <i className="fas fa-briefcase"></i>
-                    </div>
-
-                    <div className="ml-6 md:ml-0 md:text-center">
-                      <div className="font-medium text-blue-400 mb-1">
-                        {item.year}
+              <div className="relative">
+                <ul className="space-y-8">
+                  {professionalTimeline.map((item, index) => (
+                    <li key={index} className="flex items-start relative">
+                      <div className="flex flex-col items-center mr-6">
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 via-yellow-500 to-red-500 border-4 border-gray-900 flex items-center justify-center z-10 shadow-lg">
+                          <i className="fas fa-briefcase text-xs text-white"></i>
+                        </div>
+                        {index !== professionalTimeline.length - 1 && (
+                          <div className="flex-1 w-1 bg-gradient-to-b from-orange-400 via-yellow-500 to-red-500"></div>
+                        )}
                       </div>
-                      <div className="text-xl font-bold mb-1">{item.title}</div>
-                      <div className="text-gray-400 mb-2">{item.company}</div>
-                      <div className="text-gray-500">{item.description}</div>
-                    </div>
-                  </div>
-                ))}
+                      <div className="bg-gray-800 rounded-xl p-6 shadow-lg w-full border border-gray-700">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                          <span className="text-orange-400 font-semibold">
+                            {item.year}
+                          </span>
+                          <span className="text-gray-400 text-sm">
+                            {item.company}
+                          </span>
+                        </div>
+                        <div className="text-lg font-bold mb-1">
+                          {item.title}
+                        </div>
+                        <div className="text-gray-400">{item.description}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -682,16 +672,36 @@ const HeroPage = () => {
                       <div className="flex justify-between items-center">
                         <a
                           href={project.demo}
-                          className="!rounded-button whitespace-nowrap cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          className="flex items-center !rounded-button whitespace-nowrap cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
                         >
-                          Live Demo
+                          {project.demoStatus === "deployed" ? (
+                            <div className="flex items-center">
+                              <Globe size={16} className="mr-2" />
+                              Live Demo
+                            </div>
+                          ) : (
+                            <div>Not Deployed</div>
+                          )}
                         </a>
                         <a
                           href={project.github}
-                          className="!rounded-button whitespace-nowrap cursor-pointer bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          className="flex items-center !rounded-button whitespace-nowrap cursor-pointer bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
                         >
-                          <i className="fab fa-github mr-2"></i>
-                          GitHub
+                          {project.githubAccess === "public" ? (
+                            <div className="flex items-center">
+                              <Github size={16} className="mr-2" />
+                              GitHub
+                            </div>
+                          ) : (
+                            <div className="flex items-center">
+                              <Lock size={16} className="mr-2" />
+                              Private
+                            </div>
+                          )}
                         </a>
                       </div>
                     </div>
@@ -714,12 +724,6 @@ const HeroPage = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <button className="!rounded-button whitespace-nowrap cursor-pointer bg-gray-800 hover:bg-gray-700 text-white font-medium px-8 py-3 rounded-md transition-colors">
-              View More Projects
-            </button>
           </div>
         </div>
       </section>
@@ -801,7 +805,7 @@ const HeroPage = () => {
 
                 <button
                   type="submit"
-                  className="!rounded-button whitespace-nowrap cursor-pointer w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium px-8 py-3 rounded-md transition-all transform hover:scale-105"
+                  className="!rounded-button whitespace-nowrap cursor-pointer w-full bg-gradient-to-r from-orange-400 via-yellow-500 to-red-500 text-white font-medium px-8 py-3 rounded-md transition-all transform"
                 >
                   Send Message
                 </button>
@@ -809,40 +813,15 @@ const HeroPage = () => {
 
               <div className="mt-12">
                 <h3 className="text-xl font-bold mb-4">Connect With Me</h3>
-                <div className="flex space-x-4">
-                  {[
-                    {
-                      icon: "fa-github",
-                      link: "#",
-                      color: "hover:bg-gray-700",
-                    },
-                    {
-                      icon: "fa-linkedin-in",
-                      link: "#",
-                      color: "hover:bg-blue-600",
-                    },
-                    {
-                      icon: "fa-twitter",
-                      link: "#",
-                      color: "hover:bg-blue-400",
-                    },
-                    {
-                      icon: "fa-instagram",
-                      link: "#",
-                      color: "hover:bg-pink-600",
-                    },
-                    {
-                      icon: "fa-dribbble",
-                      link: "#",
-                      color: "hover:bg-pink-500",
-                    },
-                  ].map((social, index) => (
+                <div className="flex space-x-8">
+                  {socialMediaLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.link}
-                      className={`!rounded-button whitespace-nowrap cursor-pointer w-10 h-10 bg-gray-800 ${social.color} rounded-full flex items-center justify-center text-white transition-colors`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <i className={`fab ${social.icon}`}></i>
+                      <social.icon className="size-10" />
                     </a>
                   ))}
                 </div>
@@ -859,9 +838,9 @@ const HeroPage = () => {
                 <h3 className="text-xl font-bold mb-6">Contact Information</h3>
 
                 <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-lg bg-blue-500 bg-opacity-20 flex items-center justify-center mr-4">
-                      <i className="fas fa-envelope text-blue-400"></i>
+                  <div className="flex items-center">
+                    <div className="flex items-center justify-center mr-4">
+                      {<Icons.SocialMedia.Gmail className="size-8" />}
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-300">Email</h4>
@@ -874,9 +853,9 @@ const HeroPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-lg bg-purple-500 bg-opacity-20 flex items-center justify-center mr-4">
-                      <i className="fas fa-map-marker-alt text-purple-400"></i>
+                  <div className="flex items-center">
+                    <div className="flex items-center justify-center mr-4">
+                      <MapPinHouse size={30} className="text-gray-400" />
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-300">Location</h4>
@@ -884,9 +863,9 @@ const HeroPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-lg bg-pink-500 bg-opacity-20 flex items-center justify-center mr-4">
-                      <i className="fas fa-clock text-pink-400"></i>
+                  <div className="flex items-center">
+                    <div className="flex items-center justify-center mr-4">
+                      <Clock size={30} className="text-gray-400" />
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-300">

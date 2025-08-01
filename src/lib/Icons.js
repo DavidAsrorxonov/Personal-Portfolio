@@ -16,6 +16,10 @@ import {
   GitHub,
   Docker,
   Vite,
+  LinkedIn,
+  Telegram,
+  Gmail,
+  Threads,
 } from "../../public/assets/icons";
 
 export const Icons = {
@@ -37,5 +41,11 @@ export const Icons = {
     GitHub,
     Docker,
     Vite,
+  },
+  SocialMedia: {
+    LinkedIn,
+    Telegram,
+    Gmail,
+    Threads,
   },
 };
