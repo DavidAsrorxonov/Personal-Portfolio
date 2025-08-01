@@ -7,7 +7,7 @@ import { projects } from "../lib/projects";
 import { sections } from "../lib/sections";
 import { option } from "../lib/githubOption";
 import { technicalSkills } from "../lib/technicalSkills";
-import { Menu, X } from "lucide-react";
+import { Medal, Menu, X } from "lucide-react";
 
 const HeroPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,9 +94,9 @@ const HeroPage = () => {
 
           const contributionsInterval = setInterval(() => {
             setContributionsCount((prev) => {
-              if (prev < 347) return prev + 5;
+              if (prev < 700) return prev + 5;
               clearInterval(contributionsInterval);
-              return 347;
+              return 700;
             });
           }, 20);
 
@@ -159,9 +159,9 @@ const HeroPage = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <a
             href="#"
-            className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
+            className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-yellow-500 to-red-600"
           >
-            Portfolio
+            Dovudkhon | Portfolio
           </a>
 
           <div className="hidden md:flex space-x-8">
@@ -171,7 +171,7 @@ const HeroPage = () => {
                 onClick={() => scrollToSection(section)}
                 className={`!rounded-button whitespace-nowrap cursor-pointer text-sm font-medium transition-colors ${
                   activeSection === section
-                    ? "text-blue-400"
+                    ? "text-transparent bg-gradient-to-r from-orange-500 via-yellow-500 to-red-600 bg-clip-text"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
@@ -191,7 +191,7 @@ const HeroPage = () => {
         {/* Progress bar */}
         <div className="h-0.5 bg-gray-800">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300"
+            className="h-full bg-gradient-to-r from-orange-500 via-yellow-500 to-red-600 transition-all duration-300"
             style={{ width: `${scrollProgress}%` }}
           ></div>
         </div>
@@ -206,7 +206,7 @@ const HeroPage = () => {
                   onClick={() => scrollToSection(section)}
                   className={`!rounded-button whitespace-nowrap cursor-pointer block w-full text-left py-3 text-sm font-medium transition-colors ${
                     activeSection === section
-                      ? "text-blue-400"
+                      ? "text-gradient-to-r from-orange-500 via-yellow-500 to-red-600 bg-clip-text bg-transparent"
                       : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -224,13 +224,13 @@ const HeroPage = () => {
         className="min-h-screen flex items-center pt-20 relative overflow-hidden"
       >
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500 rounded-full opacity-10 animate-pulse"></div>
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-orange-500 rounded-full opacity-10 animate-pulse"></div>
           <div
-            className="absolute top-1/3 right-1/4 w-48 h-48 bg-purple-500 rounded-full opacity-10 animate-pulse"
+            className="absolute top-1/3 right-1/4 w-48 h-48 bg-yellow-500 rounded-full opacity-10 animate-pulse"
             style={{ animationDelay: "1s" }}
           ></div>
           <div
-            className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-pink-500 rounded-full opacity-10 animate-pulse"
+            className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-amber-500 rounded-full opacity-10 animate-pulse"
             style={{ animationDelay: "2s" }}
           ></div>
         </div>
@@ -239,15 +239,15 @@ const HeroPage = () => {
           <div className="max-w-3xl">
             <div className="mb-4 inline-block">
               <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 text-xs font-bold px-3 py-1 rounded-full flex items-center">
-                <i className="fas fa-medal mr-2"></i>
+                <Medal className="mr-2" size={16} />
                 Honor Graduate with Golden Medal
               </div>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-up">
               Hello, I'm{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                David
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-500 to-red-500">
+                Dovudkhon
               </span>
             </h1>
 
@@ -265,7 +265,7 @@ const HeroPage = () => {
             <div className="flex flex-wrap gap-4">
               <a
                 href="#projects"
-                className="!rounded-button whitespace-nowrap cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium px-8 py-3 rounded-md transition-all transform hover:scale-105"
+                className="!rounded-button whitespace-nowrap cursor-pointer bg-gradient-to-r from-orange-400 via-yellow-500 to-red-500 hover:from-orange-400 hover:to-red-500 text-white font-medium px-8 py-3 rounded-md transition-all transform duration-300"
               >
                 View My Work
               </a>
@@ -364,21 +364,21 @@ const HeroPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <div className="bg-gray-800 rounded-lg p-8 text-center">
-              <div className="text-5xl font-bold text-blue-400 mb-2">
+              <div className="text-5xl font-bold text-orange-400 mb-2">
                 {yearsCount}+
               </div>
               <div className="text-gray-400">Years of Experience</div>
             </div>
 
             <div className="bg-gray-800 rounded-lg p-8 text-center">
-              <div className="text-5xl font-bold text-purple-400 mb-2">
+              <div className="text-5xl font-bold text-yellow-400 mb-2">
                 {projectsCount}+
               </div>
               <div className="text-gray-400">Projects Completed</div>
             </div>
 
             <div className="bg-gray-800 rounded-lg p-8 text-center">
-              <div className="text-5xl font-bold text-pink-400 mb-2">
+              <div className="text-5xl font-bold text-amber-400 mb-2">
                 {contributionsCount}+
               </div>
               <div className="text-gray-400">GitHub Contributions</div>
@@ -415,42 +415,50 @@ const HeroPage = () => {
                     =&gt; {`{`}
                     <br />{" "}
                     <span className="text-green-400">
-                      // Effect runs on component mount
+                      &nbsp;&nbsp;// Effect runs on component mount
                     </span>
-                    <br /> <span className="text-blue-400">console</span>.
-                    <span className="text-yellow-400">log</span>(
+                    <br /> &nbsp; <span className="text-blue-400">console</span>
+                    .<span className="text-yellow-400">log</span>(
                     <span className="text-orange-400">'Component mounted'</span>
                     );
                     <br />
-                    <br /> <span className="text-purple-400">return</span> ()
-                    =&gt; {`{`}
+                    <br /> &nbsp;{" "}
+                    <span className="text-purple-400">return</span> () =&gt;{" "}
+                    {`{`}
                     <br />{" "}
                     <span className="text-green-400">
-                      // Cleanup on unmount
+                      &nbsp;&nbsp; // Cleanup on unmount
                     </span>
-                    <br /> <span className="text-blue-400">console</span>.
+                    <br />
+                    &nbsp;&nbsp;&nbsp;{" "}
+                    <span className="text-blue-400">console</span>.
                     <span className="text-yellow-400">log</span>(
                     <span className="text-orange-400">
                       'Component unmounted'
                     </span>
                     );
-                    <br /> {`}`};
+                    <br />
+                    &nbsp;&nbsp; {`}`};
                     <br /> {`}`}, []);
                     <br />
                     <br /> <span className="text-purple-400">return</span> (
                     <br /> &lt;<span className="text-yellow-400">div</span>&gt;
-                    <br /> &lt;<span className="text-yellow-400">h1</span>
+                    <br />
+                    &nbsp; &lt;<span className="text-yellow-400">h1</span>
                     &gt;Count: {`{`}
                     <span className="text-blue-400">count</span>
                     {`}`}&lt;/<span className="text-yellow-400">h1</span>&gt;
-                    <br /> &lt;<span className="text-yellow-400">
+                    <br />
+                    &nbsp; &lt;<span className="text-yellow-400">
                       button
                     </span>{" "}
                     <span className="text-purple-400">onClick</span>={`{`}()
                     =&gt; <span className="text-blue-400">setCount</span>(
                     <span className="text-blue-400">count</span> + 1){`}`}&gt;
-                    <br /> Increment
-                    <br /> &lt;/<span className="text-yellow-400">button</span>
+                    <br />
+                    &nbsp;&nbsp;&nbsp; Increment
+                    <br />
+                    &nbsp; &lt;/<span className="text-yellow-400">button</span>
                     &gt;
                     <br /> &lt;/<span className="text-yellow-400">div</span>&gt;
                     <br /> );
