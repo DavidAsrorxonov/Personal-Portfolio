@@ -97,4 +97,10 @@ export const technicalSkills = [
     icon: Icons.Langs.Docker,
     color: "from-blue-400 to-blue-600",
   },
+  {
+    name: "Vite",
+    level: 100,
+    icon: Icons.Langs.Vite,
+    color: "from-indigo-400 to-indigo-600",
+  },
 ];

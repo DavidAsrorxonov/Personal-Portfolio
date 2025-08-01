@@ -14,3 +14,4 @@ export { default as Babel } from "./Babel";
 export { default as Git } from "./Git";
 export { default as GitHub } from "./GitHub";
 export { default as Docker } from "./Docker";
+export { default as Vite } from "./Vite";

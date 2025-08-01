@@ -15,6 +15,7 @@ import {
   Git,
   GitHub,
   Docker,
+  Vite,
 } from "../../public/assets/icons";
 
 export const Icons = {
@@ -35,5 +36,6 @@ export const Icons = {
     Git,
     GitHub,
     Docker,
+    Vite,
   },
 };
