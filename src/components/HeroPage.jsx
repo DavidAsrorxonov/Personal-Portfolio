@@ -880,9 +880,13 @@ const HeroPage = () => {
                 </div>
 
                 <div className="mt-8">
-                  <button className="!rounded-button whitespace-nowrap cursor-pointer inline-flex items-center bg-gray-800 hover:bg-gray-700 text-white font-medium px-6 py-3 rounded-md transition-colors">
+                  <a
+                    href="/pdf/Resume_Front-end_Dev.pdf"
+                    download={"Resume_Front-end_Dev.pdf"}
+                    className="!rounded-button whitespace-nowrap cursor-pointer inline-flex items-center bg-gray-800 hover:bg-gray-700 text-white font-medium px-6 py-3 rounded-md transition-colors"
+                  >
                     Download CV
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
