@@ -9,6 +9,7 @@ import { option } from "../lib/githubOption";
 import { technicalSkills } from "../lib/technicalSkills";
 import {
   Clock,
+  File,
   Github,
   Globe,
   Lock,
@@ -879,13 +880,9 @@ const HeroPage = () => {
                 </div>
 
                 <div className="mt-8">
-                  <a
-                    href="#"
-                    className="!rounded-button whitespace-nowrap cursor-pointer inline-flex items-center bg-gray-800 hover:bg-gray-700 text-white font-medium px-6 py-3 rounded-md transition-colors"
-                  >
-                    <i className="fas fa-file-download mr-2"></i>
+                  <button className="!rounded-button whitespace-nowrap cursor-pointer inline-flex items-center bg-gray-800 hover:bg-gray-700 text-white font-medium px-6 py-3 rounded-md transition-colors">
                     Download CV
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -900,7 +897,7 @@ const HeroPage = () => {
             <div className="mb-6 md:mb-0">
               <a
                 href="#"
-                className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
+                className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-500 to-red-500"
               >
                 Portfolio
               </a>
@@ -933,12 +930,6 @@ const HeroPage = () => {
               </div>
 
               <div className="h-4 w-px bg-gray-800"></div>
-
-              <div className="flex space-x-2">
-                <i className="fab fa-cc-visa text-gray-400 text-xl"></i>
-                <i className="fab fa-cc-mastercard text-gray-400 text-xl"></i>
-                <i className="fab fa-cc-paypal text-gray-400 text-xl"></i>
-              </div>
             </div>
           </div>
         </div>
