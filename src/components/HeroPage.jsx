@@ -1,5 +1,3 @@
-// The exported code uses Tailwind CSS. Install Tailwind CSS in your dev environment to ensure all styles work.
-
 import React, { useState, useEffect, useRef } from "react";
 import * as echarts from "echarts";
 import { Icons } from "../lib/Icons";
@@ -8,8 +6,8 @@ import { sections } from "../lib/sections";
 import { option } from "../lib/githubOption";
 import { technicalSkills } from "../lib/technicalSkills";
 import {
+  ChevronDown,
   Clock,
-  File,
   Github,
   Globe,
   Lock,
@@ -20,6 +18,7 @@ import {
 } from "lucide-react";
 import { professionalTimeline } from "../lib/professionalTimeline";
 import { socialMediaLinks } from "../lib/socialMedia";
+import gsap from "gsap";
 
 const HeroPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,6 +35,23 @@ const HeroPage = () => {
   const [contributionsCount, setContributionsCount] = useState(0);
 
   const [showAllSkills, setShowAllSkills] = useState(false);
+
+  const headerRef = useRef(null);
+  const medalIconRef = useRef(null);
+  const introRef = useRef(null);
+  const technicalSkillsRef = useRef(null);
+  const technicalBackgroundRef = useRef(null);
+  const codeExpertiseRef = useRef(null);
+  const professionalTimelineRef = useRef(null);
+  const achievementsRef = useRef(null);
+  const projectsRef = useRef(null);
+
+  const refs = [
+    technicalSkillsRef,
+    technicalBackgroundRef,
+    achievementsRef,
+    projectsRef,
+  ];
 
   const visibleSkills = showAllSkills
     ? technicalSkills
@@ -164,10 +180,82 @@ const HeroPage = () => {
     }
   };
 
+  useEffect(() => {
+    gsap.fromTo(
+      headerRef.current,
+      { opacity: 0, y: -50 },
+      { opacity: 1, y: 0, duration: 2, ease: "power4.out" }
+    );
+    gsap.fromTo(
+      medalIconRef.current,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 3, ease: "power4.out" }
+    );
+    gsap.fromTo(
+      introRef.current,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 4, ease: "power4.out" }
+    );
+
+    refs.forEach((ref, idx) => {
+      gsap.fromTo(
+        ref.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 5,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 70%",
+            end: "bottom center",
+            scrub: true,
+          },
+        }
+      );
+    });
+    gsap.fromTo(
+      codeExpertiseRef.current,
+      { opacity: 0, x: -50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 5,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: codeExpertiseRef.current,
+          start: "top 70%",
+          end: "bottom center",
+          scrub: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      professionalTimelineRef.current,
+      { opacity: 0, x: 50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 5,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: professionalTimelineRef.current,
+          start: "top 70%",
+          end: "bottom center",
+          scrub: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur-sm border-b border-gray-800">
+      <header
+        className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur-sm border-b border-gray-800"
+        ref={headerRef}
+      >
         <div className="container mx-auto px-6 flex justify-between items-center">
           <a
             href="#"
@@ -220,7 +308,7 @@ const HeroPage = () => {
                   onClick={() => scrollToSection(section)}
                   className={`!rounded-button whitespace-nowrap cursor-pointer block w-full text-left py-3 text-sm font-medium transition-colors ${
                     activeSection === section
-                      ? "text-gradient-to-r from-orange-500 via-yellow-500 to-red-600 bg-clip-text bg-transparent"
+                      ? "text-transparent bg-gradient-to-r from-orange-500 via-yellow-500 to-red-600 bg-clip-text"
                       : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -251,14 +339,17 @@ const HeroPage = () => {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl">
-            <div className="mb-4 inline-block">
+            <div className="mb-4 inline-block" ref={medalIconRef}>
               <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 text-xs font-bold px-3 py-1 rounded-full flex items-center">
                 <Medal className="mr-2" size={16} />
                 Honor Graduate with Golden Medal
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-up">
+            <h1
+              className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-up"
+              ref={introRef}
+            >
               Hello, I'm{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-500 to-red-500">
                 Dovudkhon
@@ -296,15 +387,19 @@ const HeroPage = () => {
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
           <button
             onClick={() => scrollToSection("skills")}
-            className="!rounded-button whitespace-nowrap cursor-pointer text-gray-400 hover:text-white transition-colors"
+            className="flex items-center justify-center !rounded-button whitespace-nowrap cursor-pointer text-gray-400 hover:text-white transition-colors"
           >
-            Scroll
+            <ChevronDown className="w-8 h-8" />
           </button>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-950">
+      <section
+        id="skills"
+        className="py-20 bg-gray-950"
+        ref={technicalSkillsRef}
+      >
         <div className="container mx-auto px-6">
           <div className="mb-8 text-center">
             <h2 className="text-4xl font-bold mb-4">Technical Skills</h2>
@@ -366,7 +461,11 @@ const HeroPage = () => {
       </section>
 
       {/* Technical Background */}
-      <section id="background" className="py-20 bg-gray-900">
+      <section
+        id="background"
+        className="py-20 bg-gray-900"
+        ref={technicalBackgroundRef}
+      >
         <div className="container mx-auto px-6">
           <div className="mb-16 text-center">
             <h2 className="text-4xl font-bold mb-4">Technical Background</h2>
@@ -400,7 +499,7 @@ const HeroPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
+            <div ref={codeExpertiseRef}>
               <h3 className="text-2xl font-bold mb-6">Code Expertise</h3>
 
               <div className="bg-gray-950 rounded-lg p-6 mb-6 overflow-hidden">
@@ -539,7 +638,7 @@ const HeroPage = () => {
               </div>
             </div>
 
-            <div>
+            <div ref={professionalTimelineRef}>
               <h3 className="text-2xl font-bold mb-6">Professional Timeline</h3>
               <div className="relative">
                 <ul className="space-y-8">
@@ -577,7 +676,11 @@ const HeroPage = () => {
       </section>
 
       {/* Academic Achievements */}
-      <section id="achievements" className="py-20 bg-gray-950">
+      <section
+        id="achievements"
+        className="py-20 bg-gray-950"
+        ref={achievementsRef}
+      >
         <div className="container mx-auto px-6">
           <div className="mb-16 text-center">
             <h2 className="text-4xl font-bold mb-4">Academic Achievements</h2>
@@ -587,13 +690,13 @@ const HeroPage = () => {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-12">
+          <div className="flex items-center justify-center flex-col md:flex-row gap-12">
             <div className="md:w-1/2">
               <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 p-1 rounded-lg mb-8">
                 <div className="bg-gray-900 p-8 rounded-lg">
                   <div className="flex items-center mb-6">
                     <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
-                      <i className="fas fa-medal text-gray-900 text-3xl"></i>
+                      <Medal className="w-8 h-8" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold">
@@ -633,7 +736,7 @@ const HeroPage = () => {
       </section>
 
       {/* Project Portfolio */}
-      <section id="projects" className="py-20 bg-gray-900">
+      <section id="projects" className="py-20 bg-gray-900" ref={projectsRef}>
         <div className="container mx-auto px-6">
           <div className="mb-16 text-center">
             <h2 className="text-4xl font-bold mb-4">Project Portfolio</h2>
@@ -808,7 +911,7 @@ const HeroPage = () => {
 
                 <button
                   type="submit"
-                  className="!rounded-button whitespace-nowrap cursor-pointer w-full bg-gradient-to-r from-orange-400 via-yellow-500 to-red-500 text-white font-medium px-8 py-3 rounded-md transition-all transform"
+                  className="!rounded-button whitespace-nowrap cursor-pointer w-full bg-gray-900 hover:bg-gray-800 text-white font-medium px-8 py-3 rounded-md transition-all transform"
                 >
                   Send Message
                 </button>
