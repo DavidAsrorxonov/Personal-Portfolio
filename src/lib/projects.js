@@ -15,7 +15,7 @@ export const projects = [
     title: "Job Site Tracker",
     description:
       "A full-stack web application for tracking and managing job applications without any external tools.",
-    image: "/images/jst.png",
+    image: "/images/jst2.png",
     tags: ["React.js", "Node.js", "PostgreSQL", "APIs", "Tailwind CSS"],
     demo: "#",
     demoStatus: "not deployed",
@@ -25,7 +25,8 @@ export const projects = [
   {
     id: 3,
     title: "LMS Course Platform",
-    description: "An interactive website made with GSAP",
+    description:
+      "An online learning platform where users can find online tutorials and watch them and admins can upload videos",
     image: "/images/lmsplatform.png",
     tags: [
       "React.js",
@@ -45,21 +46,22 @@ export const projects = [
   },
   {
     id: 4,
-    title: "Aura 2.0",
+    title: "Care Pulse",
     description:
-      "A website for education centers that helps manage their student and tutor data",
-    image: "/images/aura.png",
+      "A hospital management platform for hospitals to manage their patient data and for patients to arrange meetings with doctors",
+    image: "/images/carepulse.png",
     tags: [
+      "Next.js",
       "React.js",
       "Node.js",
-      "PostgreSQL",
+      "MongoDB",
       "Tailwind CSS",
       "APIs",
       "Socket.io",
     ],
-    demo: "https://langapex.uz",
+    demo: "https://care-pulse-two-tau.vercel.app/",
     demoStatus: "deployed",
-    github: "",
-    githubAccess: "private",
+    github: "https://github.com/DavidAsrorxonov/Care-Pulse",
+    githubAccess: "public",
   },
 ];
